@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Silicon Photonics Experiments</h1>
+    <a href="{% url 'experiment-create' %}" class="btn btn-primary mb-3">Add New Experiment</a>
+    
+    <div class="row">
+        {% for experiment in experiments %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ experiment.title }}</h5>
+                    <p class="card-text">
+                        <strong>Wavelength:</strong> {{ experiment.wavelength }} nm<br>
+                        <strong>Power:</strong> {{ experiment.power }} mW
+                    </p>
+                    <a href="{% url 'experiment-detail' experiment.id %}" class="btn btn-info">View Details</a>
+                </div>
+                <div class="card-footer text-muted">
+                    {{ experiment.date_created|date:"F d, Y" }}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p>No experiments have been recorded yet.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

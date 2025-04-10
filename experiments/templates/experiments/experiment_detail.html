@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h2>{{ experiment.title }}</h2>
+            <small>Created on {{ experiment.date_created|date:"F d, Y" }}</small>
+        </div>
+        <div class="card-body">
+            <h5>Experiment Parameters</h5>
+            <ul>
+                <li><strong>Wavelength:</strong> {{ experiment.wavelength }} nm</li>
+                <li><strong>Power:</strong> {{ experiment.power }} mW</li>
+            </ul>
+            
+            <h5>Description</h5>
+            <p>{{ experiment.description }}</p>
+            
+            <a href="{% url 'experiment-list' %}" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
